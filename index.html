@@ -10,51 +10,35 @@
 
 body{
   height:100vh;
-  background:radial-gradient(circle,#30001f,#000);
+  background:radial-gradient(circle,#2b001b,#000);
   color:white;
   overflow:hidden;
 }
 
-/* ================= PASSWORD ================= */
 #lock{
-  position:fixed;
-  inset:0;
+  position:fixed;inset:0;
+  background:#000;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  background:#000;
   z-index:99;
 }
-
 #lock input{
-  padding:14px;
-  border-radius:25px;
-  border:none;
-  font-size:18px;
-  text-align:center;
+  padding:14px;border-radius:25px;border:none;font-size:18px;text-align:center;
 }
-
 #lock button{
-  margin-top:15px;
-  padding:10px 30px;
-  border:none;
-  border-radius:25px;
-  background:#ff4d88;
-  color:white;
-  font-size:18px;
+  margin-top:15px;padding:12px 30px;border:none;border-radius:25px;
+  background:#ff4d88;color:white;font-size:18px;
 }
 
-/* ================= SCENES ================= */
 .scene{
   display:none;
   height:100vh;
-  width:100%;
+  padding:25px;
   text-align:center;
-  padding:20px;
-  animation:fade 1.4s ease;
+  animation:fade 1.5s ease;
 }
-
 .scene.active{
   display:flex;
   flex-direction:column;
@@ -67,179 +51,177 @@ body{
   to{opacity:1;transform:scale(1);}
 }
 
-/* ================= HEARTS ================= */
-.heart{
-  position:fixed;
-  bottom:-20px;
-  font-size:20px;
-  animation:float 8s linear infinite;
-  opacity:.6;
+.glow{
+  font-size:25px;
+  text-shadow:0 0 18px pink;
+  line-height:1.6;
+  max-width:700px;
 }
 
-@keyframes float{
-  to{transform:translateY(-120vh) scale(1.5);opacity:0;}
-}
-
-/* ================= ENVELOPE ================= */
-.envelope{
-  width:220px;
-  height:150px;
-  background:#ff6fae;
-  border-radius:10px;
-  position:relative;
-  cursor:pointer;
-  box-shadow:0 0 30px #ff6fae;
-  animation:pulse 2s infinite;
-}
-
-@keyframes pulse{
-  50%{transform:scale(1.06);}
-}
-
-/* ================= BUTTON ================= */
 .btn{
   margin-top:25px;
   padding:14px 32px;
-  border:none;
-  border-radius:30px;
-  background:#ff4d88;
-  color:white;
-  font-size:18px;
+  border:none;border-radius:30px;
+  background:#ff4d88;color:white;font-size:18px;
   box-shadow:0 0 20px #ff4d88;
-  cursor:pointer;
 }
 
-/* ================= IMAGES ================= */
+.envelope{
+  width:220px;height:150px;
+  background:#ff6fae;border-radius:10px;
+  box-shadow:0 0 30px #ff6fae;
+  margin-top:25px;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{50%{transform:scale(1.06);}}
+
+/* animations */
+.kiss{font-size:60px;animation:kiss 2s infinite;}
+@keyframes kiss{50%{transform:scale(1.3) rotate(10deg);}}
+
+.hug{font-size:55px;animation:hug 1.6s infinite;}
+@keyframes hug{50%{transform:scale(1.2);}}
+
+.hands{
+  display:flex;gap:40px;margin:20px 0;
+}
+.hand{font-size:45px;animation:hold 2s infinite alternate;}
+@keyframes hold{to{transform:translateX(15px);}}
+
+/* hearts */
+.heart{
+  position:fixed;bottom:-20px;
+  font-size:18px;opacity:.7;
+  animation:float 8s linear infinite;
+}
+@keyframes float{to{transform:translateY(-120vh) scale(1.5);opacity:0;}}
+
 .photo{
-  width:240px;
-  border-radius:20px;
-  margin:20px 0;
+  width:230px;border-radius:20px;margin:20px 0;
   box-shadow:0 0 40px rgba(255,120,180,.9);
-  animation:floatImg 4s ease-in-out infinite;
 }
-
-@keyframes floatImg{
-  50%{transform:translateY(-15px);}
-}
-
-/* ================= KISS ================= */
-.kiss{
-  font-size:60px;
-  animation:kiss 2s infinite;
-}
-
-@keyframes kiss{
-  50%{transform:scale(1.3) rotate(10deg);}
-}
-
-/* ================= HUG ================= */
-.hug{
-  font-size:55px;
-  animation:hug 1.6s infinite;
-}
-
-@keyframes hug{
-  50%{transform:scale(1.2);}
-}
-
-/* ================= TEXT ================= */
-.glow{
-  font-size:26px;
-  text-shadow:0 0 15px pink;
-  line-height:1.5;
-}
-
-.final{
-  font-size:32px;
-  color:#ff9fd4;
-  text-shadow:0 0 25px #ff4d88;
-}
+.final{font-size:32px;color:#ff9fd4;text-shadow:0 0 30px #ff4d88;}
 </style>
 </head>
 
 <body>
 
-<!-- PASSWORD -->
 <div id="lock">
-  <h2>Only Isha can enter 💖</h2><br>
-  <input type="password" id="pass" placeholder="Special date">
+  <h2>Only Isha can open this 💖</h2><br>
+  <input id="pass" type="password" placeholder="Special date">
   <button onclick="unlock()">Unlock 💌</button>
 </div>
 
-<!-- MUSIC -->
 <audio autoplay loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1b6f6d1db7.mp3">
+  <source src="https://cdn.pixabay.com/download/audio/2022/10/24/audio_6b3f4b03c3.mp3">
 </audio>
 
-<!-- SCENES -->
+<!-- STEP 1 -->
 <div class="scene active" id="s1">
-  <h1 class="glow">Hii Ishaaaaaaaaaaaa 💕</h1>
-  <p>This journey opens… with love</p>
+  <p class="glow">
+    Ishaaaaaaaaaaaa…  
+    Yeh sirf ek page nahi hai,  
+    yeh mera dil hai jo dheere-dheere khul raha hai.  
+    Har click ke saath, meri feelings ka ek naya raaz,  
+    sirf tumhare liye…
+  </p>
   <div class="envelope" onclick="nextScene()"></div>
 </div>
 
+<!-- STEP 2 -->
 <div class="scene" id="s2">
-  <h2 class="glow">Every time I see you…</h2>
+  <p class="glow">
+    🌸 Shayari 🌸<br><br>
+    Tumhari ek muskurahat par hum apni duniya haar baithe,<br>
+    Tumne dekha bhi nahi aur hum tumse pyaar kar baithe.<br>
+    Shor bhari duniya mein sirf ek sukoon ho tum,<br>
+    Jo har din dil ke aur kareeb aa baithe.
+  </p>
   <div class="kiss">😘</div>
   <img src="1334b89d-5b33-4295-ac8e-4c7be03ae35c.png" class="photo">
-  <button class="btn" onclick="nextScene()">Open 💖</button>
+  <button class="btn" onclick="nextScene()">Next 💖</button>
 </div>
 
+<!-- STEP 3 -->
 <div class="scene" id="s3">
-  <h2 class="glow">Come here 🤍</h2>
+  <p class="glow">
+    Tumhe dekh kar yeh ehsaas hota hai…  
+    ki khoobsurti sirf chehre mein nahi hoti,  
+    balki uss masoomiyat mein hoti hai  
+    jo tumhari aankhon se jhalakti hai.
+  </p>
   <div class="hug">🤗</div>
   <img src="0dcc0e2e-1d9a-49cd-a067-152d93730ac8.png" class="photo">
-  <button class="btn" onclick="nextScene()">More love 💞</button>
+  <button class="btn" onclick="nextScene()">More 💞</button>
 </div>
 
+<!-- STEP 4 -->
 <div class="scene" id="s4">
-  <h2 class="glow">My arms are your home 🏠</h2>
-  <div class="hug">🫂</div>
-  <button class="btn" onclick="nextScene()">Envelope 💌</button>
+  <p class="glow">
+    🤍 Shayari 🤍<br><br>
+    Haath pakadne ka matlab sirf saath chalna nahi hota,<br>
+    Haath pakadne ka matlab hota hai –  
+    har mushkil mein saath rehna.<br>
+    Agar tum haath do, toh wada hai,<br>
+    main zindagi bhar nahi chhodunga.
+  </p>
+  <div class="hands">
+    <div class="hand">🤍</div>
+    <div class="hand">🤍</div>
+  </div>
+  <button class="btn" onclick="nextScene()">Next 💌</button>
 </div>
 
+<!-- STEP 5 -->
 <div class="scene" id="s5">
-  <h2 class="glow">A soft kiss before sleep 🌙</h2>
+  <p class="glow">
+    💋 Shayari 💋<br><br>
+    Yeh pyaar shor nahi karta,<br>
+    Yeh pyaar sirf mehsoos hota hai.<br>
+    Tum paas ho ya door,<br>
+    Dil sirf tumhara hi hota hai.
+  </p>
   <div class="kiss">💋</div>
   <button class="btn" onclick="nextScene()">Next 💕</button>
 </div>
 
+<!-- STEP 6 -->
 <div class="scene" id="s6">
-  <h2 class="glow">I choose you…</h2>
-  <p>Again & again ♾️</p>
+  <p class="glow">
+    Tumhare saath hone ka khwab nahi dekhta,<br>
+    Tumhare saath rehne ka wada karta hoon.<br>
+    Chahe waqt badle, chahe duniya badle,<br>
+    Par mera pyaar tumhare liye nahi badlega.
+  </p>
   <button class="btn" onclick="nextScene()">Final ❤️</button>
 </div>
 
+<!-- FINAL -->
 <div class="scene" id="s7">
   <h1 class="final">Ishaaaaaaaaaaaa 🌹</h1>
-  <p>You are my favourite forever 💖</p>
+  <p class="glow">
+    Tum sirf meri pasand nahi ho…  
+    Tum meri aadat, meri dua,  
+    aur meri zindagi ka sabse khoobsurat hissa ho 💖
+  </p>
 </div>
 
 <script>
 let current=1;
-
 function nextScene(){
   document.getElementById("s"+current).classList.remove("active");
   current++;
   document.getElementById("s"+current).classList.add("active");
 }
-
 function unlock(){
-  let p=document.getElementById("pass").value;
-  if(p==="22november"){
+  if(document.getElementById("pass").value==="22november"){
     document.getElementById("lock").style.display="none";
-  }else{
-    alert("Wrong password 💔");
-  }
+  }else alert("Wrong password 💔");
 }
-
-/* Floating hearts */
 setInterval(()=>{
   let h=document.createElement("div");
-  h.className="heart";
-  h.innerHTML="💖";
+  h.className="heart";h.innerHTML="💖";
   h.style.left=Math.random()*100+"vw";
-  h.style.animationDuration=(6+Math.random()*4)+"s";
   document.body.appendChild(h);
   setTimeout(()=>h.remove(),9000);
 },400);
