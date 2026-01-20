@@ -2,150 +2,201 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For Ishaaaaaaaa ❤️</title>
+<title>For Isha ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body {
-  margin: 0;
-  height: 100vh;
-  background: linear-gradient(135deg, #ff758c, #ff7eb3);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  font-family: 'Segoe UI', sans-serif;
-  transition: background 1s ease;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Segoe UI', cursive;
 }
 
-.container {
-  text-align: center;
-  color: white;
-  padding: 30px;
+body{
+  height:100vh;
+  background: radial-gradient(circle at top, #2b001b, #000);
+  overflow:hidden;
+  color:white;
 }
 
-button {
-  padding: 15px 38px;
-  font-size: 22px;
-  border: none;
-  border-radius: 40px;
-  cursor: pointer;
-  background: white;
-  color: #ff4d6d;
-  font-weight: bold;
-  box-shadow: 0 12px 25px rgba(0,0,0,0.3);
-}
-
-#text {
-  font-size: 30px;
-  margin-top: 25px;
-  min-height: 90px;
-}
-
-/* Animations */
-.fade { animation: fade 1s forwards; }
-.bounce { animation: bounce 1s forwards; }
-.slide { animation: slide 1s forwards; }
-.zoom { animation: zoom 1s forwards; }
-.glow { animation: glow 1.5s infinite alternate; }
-.space { letter-spacing: 6px; animation: fade 1s; }
-
-@keyframes fade {
-  from {opacity:0;}
-  to {opacity:1;}
-}
-@keyframes bounce {
-  0%{transform:scale(0.5);}
-  60%{transform:scale(1.2);}
-  100%{transform:scale(1);}
-}
-@keyframes slide {
-  from {transform:translateX(-50px); opacity:0;}
-  to {transform:translateX(0); opacity:1;}
-}
-@keyframes zoom {
-  from {transform:scale(0); opacity:0;}
-  to {transform:scale(1); opacity:1;}
-}
-@keyframes glow {
-  from {text-shadow:0 0 5px #fff;}
-  to {text-shadow:0 0 20px #fff;}
-}
-
-/* Hearts */
-.heart {
-  position: absolute;
+/* Hearts animation */
+.heart{
+  position: fixed;
   bottom: -20px;
-  font-size: 22px;
-  animation: float 6s linear infinite;
+  font-size: 18px;
+  animation: float 8s linear infinite;
+  opacity: 0.6;
 }
-@keyframes float {
-  to {transform: translateY(-100vh); opacity:0;}
+
+@keyframes float{
+  0%{ transform: translateY(0) scale(1); }
+  100%{ transform: translateY(-120vh) scale(1.6); opacity:0;}
+}
+
+/* Scene container */
+.scene{
+  display:none;
+  height:100vh;
+  width:100%;
+  padding:20px;
+  text-align:center;
+  animation: fade 1.5s ease;
+}
+
+.scene.active{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+@keyframes fade{
+  from{opacity:0; transform:scale(0.95);}
+  to{opacity:1; transform:scale(1);}
+}
+
+/* Envelope */
+.envelope{
+  width:220px;
+  height:150px;
+  background:#ff6fae;
+  position:relative;
+  border-radius:8px;
+  cursor:pointer;
+  box-shadow:0 0 30px #ff6fae;
+  animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.05);}
+}
+
+.envelope::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:#ff9fc9;
+  clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
+}
+
+.btn{
+  margin-top:25px;
+  padding:14px 30px;
+  border:none;
+  border-radius:30px;
+  background:#ff4d88;
+  color:white;
+  font-size:18px;
+  cursor:pointer;
+  box-shadow:0 0 20px #ff4d88;
+}
+
+/* Images */
+.photo{
+  width:230px;
+  border-radius:20px;
+  box-shadow:0 0 40px rgba(255,120,180,0.8);
+  margin:20px 0;
+  animation: floatImg 4s ease-in-out infinite;
+}
+
+@keyframes floatImg{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-15px);}
+}
+
+/* Text glow */
+.glow{
+  font-size:26px;
+  text-shadow:0 0 15px pink;
+  line-height:1.4;
+}
+
+/* Final */
+.final{
+  font-size:32px;
+  color:#ff9fd4;
+  text-shadow:0 0 25px #ff4d88;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-  <button onclick="nextStep()">Click Me Ishaaaaaaaa 💕</button>
-  <div id="text"></div>
+<!-- Background music -->
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1b6f6d1db7.mp3" type="audio/mpeg">
+</audio>
 
-  <!-- Music -->
-  <div id="music" style="display:none; margin-top:20px;">
-    <iframe width="280" height="160"
-      src="https://www.youtube.com/embed/2Vv-BfVoq4g?autoplay=1"
-      allow="autoplay"
-      frameborder="0">
-    </iframe>
-  </div>
+<!-- Scenes -->
+
+<div class="scene active" id="s1">
+  <h1 class="glow">Hey Ishaaaaaaaaaaaa 💖</h1>
+  <p style="margin-top:15px">I made something… just for you</p>
+  <div class="envelope" onclick="nextScene()"></div>
+</div>
+
+<div class="scene" id="s2">
+  <h2 class="glow">Every heartbeat 💓</h2>
+  <p>whispers your name…</p>
+  <img src="1334b89d-5b33-4295-ac8e-4c7be03ae35c.png" class="photo">
+  <button class="btn" onclick="nextScene()">Open next 💌</button>
+</div>
+
+<div class="scene" id="s3">
+  <h2 class="glow">If love had a face…</h2>
+  <p>it would look like this ✨</p>
+  <img src="0dcc0e2e-1d9a-49cd-a067-152d93730ac8.png" class="photo">
+  <button class="btn" onclick="nextScene()">Another surprise 🎀</button>
+</div>
+
+<div class="scene" id="s4">
+  <h2 class="glow">You are my comfort 🌙</h2>
+  <p>my calm, my chaos, my smile</p>
+  <div class="envelope" onclick="nextScene()"></div>
+</div>
+
+<div class="scene" id="s5">
+  <h2 class="glow">Even doodles draw us together ✏️</h2>
+  <p>Holding hands in every universe</p>
+  <button class="btn" onclick="nextScene()">One more click 💕</button>
+</div>
+
+<div class="scene" id="s6">
+  <h2 class="glow">I don’t promise perfection…</h2>
+  <p>But I promise effort, honesty & love 🤍</p>
+  <button class="btn" onclick="nextScene()">Final 💖</button>
+</div>
+
+<div class="scene" id="s7">
+  <h1 class="final">Ishaaaaaaaaaaaa 🌹</h1>
+  <p>You are my favourite feeling forever ♾️</p>
 </div>
 
 <script>
-let step = 0;
-const text = document.getElementById("text");
+let current = 1;
 
-const steps = [
-  { msg:"Hi Ishaaaaaaaa 😍", cls:"fade" },
-  { msg:"You make my heart smile 💖", cls:"bounce" },
-  { msg:"Every moment with you feels special 🌸", cls:"slide" },
-  { msg:"I fell for you slowly… deeply 💌", cls:"zoom" },
-  { msg:"You are my safe place 🫶", cls:"glow" },
-  { msg:"MY   PERFECT   PERSON", cls:"space" },
-  { msg:"You changed my world ✨", bg:"#ff6f91" },
-  { msg:"My days start with you ☀️", emoji:"🥺" },
-  { msg:"My heart chose you ❤️", hearts:true },
-  { msg:"This is Ayush 💖 I found my perfect in you ✨❤️", final:true }
-];
-
-function nextStep() {
-  if(step >= steps.length) return;
-
-  text.className = "";
-  text.innerHTML = "";
-
-  const s = steps[step];
-  setTimeout(() => {
-    text.innerText = s.msg;
-    if(s.cls) text.classList.add(s.cls);
-    if(s.bg) document.body.style.background = s.bg;
-    if(s.emoji) text.innerText += " " + s.emoji;
-    if(s.hearts) startHearts();
-    if(s.final) document.getElementById("music").style.display = "block";
-  }, 100);
-
-  step++;
+function nextScene(){
+  document.getElementById("s"+current).classList.remove("active");
+  current++;
+  document.getElementById("s"+current).classList.add("active");
 }
 
-function startHearts() {
-  setInterval(() => {
-    const h = document.createElement("div");
-    h.className = "heart";
-    h.innerHTML = "❤️";
-    h.style.left = Math.random()*100+"vw";
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),6000);
-  },300);
-}
+/* Floating hearts */
+setInterval(()=>{
+  let h = document.createElement("div");
+  h.className = "heart";
+  h.innerHTML = "💖";
+  h.style.left = Math.random()*100+"vw";
+  h.style.animationDuration = (6+Math.random()*4)+"s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),9000);
+},400);
 </script>
 
 </body>
