@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For Ishaaaaaaaa 💖</title>
+<title>For Ishaaaaaaaa ❤️</title>
 
 <style>
 body {
   margin: 0;
   height: 100vh;
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,10 +19,12 @@ body {
 .container {
   text-align: center;
   color: white;
+  padding: 25px;
+  backdrop-filter: blur(6px);
 }
 
 button {
-  padding: 15px 35px;
+  padding: 15px 38px;
   font-size: 22px;
   border: none;
   border-radius: 40px;
@@ -30,45 +32,25 @@ button {
   background: white;
   color: #ff4d6d;
   font-weight: bold;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-  transition: transform 0.3s;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.3);
 }
 
-button:hover {
-  transform: scale(1.1);
+#text {
+  font-size: 28px;
+  margin-top: 25px;
+  min-height: 130px;
 }
 
-#love {
-  display: none;
-  animation: fadeIn 2s ease-in-out;
-}
-
-h1 {
-  font-size: 45px;
-}
-
-p {
-  font-size: 22px;
-  max-width: 500px;
-  margin: auto;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Floating Hearts */
 .heart {
   position: absolute;
   bottom: -20px;
-  font-size: 20px;
+  font-size: 22px;
   animation: float 6s linear infinite;
 }
 
 @keyframes float {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(-100vh); opacity: 0; }
+  0% {transform: translateY(0); opacity:1;}
+  100% {transform: translateY(-100vh); opacity:0;}
 }
 </style>
 </head>
@@ -76,32 +58,56 @@ p {
 <body>
 
 <div class="container">
-  <button onclick="revealLove()">Click Me Ishaaaaaaaa 💕</button>
+  <button onclick="nextStep()">Click Me Ishaaaaaaaa 💕</button>
+  <div id="text"></div>
 
-  <div id="love">
-    <h1>Ishaaaaaaaaaaaaaaaaaaaaaa ❤️</h1>
-    <p>
-      You are my cutest blessing 🥺💕<br>
-      Every smile of yours makes my world brighter.<br><br>
-      This is Ayush, promising you love, care,<br>
-      laughter and forever 🌸💖
-    </p>
+  <!-- YouTube Perfect (hidden until step 6) -->
+  <div id="music" style="display:none; margin-top:20px;">
+    <iframe width="280" height="160"
+      src="https://www.youtube.com/embed/2Vv-BfVoq4g?autoplay=1"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
   </div>
 </div>
 
-<audio id="music" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-</audio>
-
 <script>
-function revealLove() {
-  document.querySelector("button").style.display = "none";
-  document.getElementById("love").style.display = "block";
-  document.getElementById("music").play();
-  createHearts();
+let step = 0;
+const text = document.getElementById("text");
+
+const messages = [
+  "Hi Ishaaaaaaaa 😍",
+  "You are the cutest part of my life 🌸",
+  "Your smile heals everything inside me 🫶",
+  "I fell for you slowly… and deeply 💌",
+  "You are my today, my tomorrow, my forever 🥺❤️",
+  "This is Ayush 💖<br>I found my <b>Perfect</b> in you ✨"
+];
+
+function typeText(message) {
+  text.innerHTML = "";
+  let i = 0;
+  const interval = setInterval(() => {
+    text.innerHTML += message.charAt(i);
+    i++;
+    if(i >= message.length) clearInterval(interval);
+  }, 50);
 }
 
-function createHearts() {
+function nextStep() {
+  if(step < messages.length) {
+    typeText(messages[step]);
+    step++;
+  }
+
+  if(step === 6) {
+    document.getElementById("music").style.display = "block";
+    startHearts();
+  }
+}
+
+function startHearts() {
   setInterval(() => {
     const heart = document.createElement("div");
     heart.className = "heart";
@@ -116,3 +122,4 @@ function createHearts() {
 
 </body>
 </html>
+
