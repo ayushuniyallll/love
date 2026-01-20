@@ -14,13 +14,13 @@ body {
   align-items: center;
   overflow: hidden;
   font-family: 'Segoe UI', sans-serif;
+  transition: background 1s ease;
 }
 
 .container {
   text-align: center;
   color: white;
-  padding: 25px;
-  backdrop-filter: blur(6px);
+  padding: 30px;
 }
 
 button {
@@ -36,21 +36,50 @@ button {
 }
 
 #text {
-  font-size: 28px;
+  font-size: 30px;
   margin-top: 25px;
-  min-height: 130px;
+  min-height: 90px;
 }
 
+/* Animations */
+.fade { animation: fade 1s forwards; }
+.bounce { animation: bounce 1s forwards; }
+.slide { animation: slide 1s forwards; }
+.zoom { animation: zoom 1s forwards; }
+.glow { animation: glow 1.5s infinite alternate; }
+.space { letter-spacing: 6px; animation: fade 1s; }
+
+@keyframes fade {
+  from {opacity:0;}
+  to {opacity:1;}
+}
+@keyframes bounce {
+  0%{transform:scale(0.5);}
+  60%{transform:scale(1.2);}
+  100%{transform:scale(1);}
+}
+@keyframes slide {
+  from {transform:translateX(-50px); opacity:0;}
+  to {transform:translateX(0); opacity:1;}
+}
+@keyframes zoom {
+  from {transform:scale(0); opacity:0;}
+  to {transform:scale(1); opacity:1;}
+}
+@keyframes glow {
+  from {text-shadow:0 0 5px #fff;}
+  to {text-shadow:0 0 20px #fff;}
+}
+
+/* Hearts */
 .heart {
   position: absolute;
   bottom: -20px;
   font-size: 22px;
   animation: float 6s linear infinite;
 }
-
 @keyframes float {
-  0% {transform: translateY(0); opacity:1;}
-  100% {transform: translateY(-100vh); opacity:0;}
+  to {transform: translateY(-100vh); opacity:0;}
 }
 </style>
 </head>
@@ -61,13 +90,12 @@ button {
   <button onclick="nextStep()">Click Me Ishaaaaaaaa 💕</button>
   <div id="text"></div>
 
-  <!-- YouTube Perfect (hidden until step 6) -->
+  <!-- Music -->
   <div id="music" style="display:none; margin-top:20px;">
     <iframe width="280" height="160"
       src="https://www.youtube.com/embed/2Vv-BfVoq4g?autoplay=1"
-      frameborder="0"
-      allow="autoplay; encrypted-media"
-      allowfullscreen>
+      allow="autoplay"
+      frameborder="0">
     </iframe>
   </div>
 </div>
@@ -76,47 +104,47 @@ button {
 let step = 0;
 const text = document.getElementById("text");
 
-const messages = [
-  "Hi Ishaaaaaaaa 😍",
-  "You are the cutest part of my life 🌸",
-  "Your smile heals everything inside me 🫶",
-  "I fell for you slowly… and deeply 💌",
-  "You are my today, my tomorrow, my forever 🥺❤️",
-  "This is Ayush 💖<br>I found my <b>Perfect</b> in you ✨"
+const steps = [
+  { msg:"Hi Ishaaaaaaaa 😍", cls:"fade" },
+  { msg:"You make my heart smile 💖", cls:"bounce" },
+  { msg:"Every moment with you feels special 🌸", cls:"slide" },
+  { msg:"I fell for you slowly… deeply 💌", cls:"zoom" },
+  { msg:"You are my safe place 🫶", cls:"glow" },
+  { msg:"MY   PERFECT   PERSON", cls:"space" },
+  { msg:"You changed my world ✨", bg:"#ff6f91" },
+  { msg:"My days start with you ☀️", emoji:"🥺" },
+  { msg:"My heart chose you ❤️", hearts:true },
+  { msg:"This is Ayush 💖 I found my perfect in you ✨❤️", final:true }
 ];
 
-function typeText(message) {
-  text.innerHTML = "";
-  let i = 0;
-  const interval = setInterval(() => {
-    text.innerHTML += message.charAt(i);
-    i++;
-    if(i >= message.length) clearInterval(interval);
-  }, 50);
-}
-
 function nextStep() {
-  if(step < messages.length) {
-    typeText(messages[step]);
-    step++;
-  }
+  if(step >= steps.length) return;
 
-  if(step === 6) {
-    document.getElementById("music").style.display = "block";
-    startHearts();
-  }
+  text.className = "";
+  text.innerHTML = "";
+
+  const s = steps[step];
+  setTimeout(() => {
+    text.innerText = s.msg;
+    if(s.cls) text.classList.add(s.cls);
+    if(s.bg) document.body.style.background = s.bg;
+    if(s.emoji) text.innerText += " " + s.emoji;
+    if(s.hearts) startHearts();
+    if(s.final) document.getElementById("music").style.display = "block";
+  }, 100);
+
+  step++;
 }
 
 function startHearts() {
   setInterval(() => {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (20 + Math.random() * 20) + "px";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 6000);
-  }, 300);
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "❤️";
+    h.style.left = Math.random()*100+"vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  },300);
 }
 </script>
 
