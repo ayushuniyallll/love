@@ -2,46 +2,57 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For Isha ❤️</title>
+<title>Only For Isha ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family: 'Segoe UI', cursive;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',cursive;}
 
 body{
   height:100vh;
-  background: radial-gradient(circle at top, #2b001b, #000);
-  overflow:hidden;
+  background:radial-gradient(circle,#30001f,#000);
   color:white;
+  overflow:hidden;
 }
 
-/* Hearts animation */
-.heart{
-  position: fixed;
-  bottom: -20px;
-  font-size: 18px;
-  animation: float 8s linear infinite;
-  opacity: 0.6;
+/* ================= PASSWORD ================= */
+#lock{
+  position:fixed;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  background:#000;
+  z-index:99;
 }
 
-@keyframes float{
-  0%{ transform: translateY(0) scale(1); }
-  100%{ transform: translateY(-120vh) scale(1.6); opacity:0;}
+#lock input{
+  padding:14px;
+  border-radius:25px;
+  border:none;
+  font-size:18px;
+  text-align:center;
 }
 
-/* Scene container */
+#lock button{
+  margin-top:15px;
+  padding:10px 30px;
+  border:none;
+  border-radius:25px;
+  background:#ff4d88;
+  color:white;
+  font-size:18px;
+}
+
+/* ================= SCENES ================= */
 .scene{
   display:none;
   height:100vh;
   width:100%;
-  padding:20px;
   text-align:center;
-  animation: fade 1.5s ease;
+  padding:20px;
+  animation:fade 1.4s ease;
 }
 
 .scene.active{
@@ -52,72 +63,92 @@ body{
 }
 
 @keyframes fade{
-  from{opacity:0; transform:scale(0.95);}
-  to{opacity:1; transform:scale(1);}
+  from{opacity:0;transform:scale(0.92);}
+  to{opacity:1;transform:scale(1);}
 }
 
-/* Envelope */
+/* ================= HEARTS ================= */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:20px;
+  animation:float 8s linear infinite;
+  opacity:.6;
+}
+
+@keyframes float{
+  to{transform:translateY(-120vh) scale(1.5);opacity:0;}
+}
+
+/* ================= ENVELOPE ================= */
 .envelope{
   width:220px;
   height:150px;
   background:#ff6fae;
+  border-radius:10px;
   position:relative;
-  border-radius:8px;
   cursor:pointer;
   box-shadow:0 0 30px #ff6fae;
   animation:pulse 2s infinite;
 }
 
 @keyframes pulse{
-  0%,100%{transform:scale(1);}
-  50%{transform:scale(1.05);}
+  50%{transform:scale(1.06);}
 }
 
-.envelope::before{
-  content:'';
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:#ff9fc9;
-  clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
-}
-
+/* ================= BUTTON ================= */
 .btn{
   margin-top:25px;
-  padding:14px 30px;
+  padding:14px 32px;
   border:none;
   border-radius:30px;
   background:#ff4d88;
   color:white;
   font-size:18px;
-  cursor:pointer;
   box-shadow:0 0 20px #ff4d88;
+  cursor:pointer;
 }
 
-/* Images */
+/* ================= IMAGES ================= */
 .photo{
-  width:230px;
+  width:240px;
   border-radius:20px;
-  box-shadow:0 0 40px rgba(255,120,180,0.8);
   margin:20px 0;
-  animation: floatImg 4s ease-in-out infinite;
+  box-shadow:0 0 40px rgba(255,120,180,.9);
+  animation:floatImg 4s ease-in-out infinite;
 }
 
 @keyframes floatImg{
-  0%,100%{transform:translateY(0);}
   50%{transform:translateY(-15px);}
 }
 
-/* Text glow */
+/* ================= KISS ================= */
+.kiss{
+  font-size:60px;
+  animation:kiss 2s infinite;
+}
+
+@keyframes kiss{
+  50%{transform:scale(1.3) rotate(10deg);}
+}
+
+/* ================= HUG ================= */
+.hug{
+  font-size:55px;
+  animation:hug 1.6s infinite;
+}
+
+@keyframes hug{
+  50%{transform:scale(1.2);}
+}
+
+/* ================= TEXT ================= */
 .glow{
   font-size:26px;
   text-shadow:0 0 15px pink;
-  line-height:1.4;
+  line-height:1.5;
 }
 
-/* Final */
 .final{
   font-size:32px;
   color:#ff9fd4;
@@ -128,58 +159,64 @@ body{
 
 <body>
 
-<!-- Background music -->
+<!-- PASSWORD -->
+<div id="lock">
+  <h2>Only Isha can enter 💖</h2><br>
+  <input type="password" id="pass" placeholder="Special date">
+  <button onclick="unlock()">Unlock 💌</button>
+</div>
+
+<!-- MUSIC -->
 <audio autoplay loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1b6f6d1db7.mp3" type="audio/mpeg">
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1b6f6d1db7.mp3">
 </audio>
 
-<!-- Scenes -->
-
+<!-- SCENES -->
 <div class="scene active" id="s1">
-  <h1 class="glow">Hey Ishaaaaaaaaaaaa 💖</h1>
-  <p style="margin-top:15px">I made something… just for you</p>
+  <h1 class="glow">Hii Ishaaaaaaaaaaaa 💕</h1>
+  <p>This journey opens… with love</p>
   <div class="envelope" onclick="nextScene()"></div>
 </div>
 
 <div class="scene" id="s2">
-  <h2 class="glow">Every heartbeat 💓</h2>
-  <p>whispers your name…</p>
+  <h2 class="glow">Every time I see you…</h2>
+  <div class="kiss">😘</div>
   <img src="1334b89d-5b33-4295-ac8e-4c7be03ae35c.png" class="photo">
-  <button class="btn" onclick="nextScene()">Open next 💌</button>
+  <button class="btn" onclick="nextScene()">Open 💖</button>
 </div>
 
 <div class="scene" id="s3">
-  <h2 class="glow">If love had a face…</h2>
-  <p>it would look like this ✨</p>
+  <h2 class="glow">Come here 🤍</h2>
+  <div class="hug">🤗</div>
   <img src="0dcc0e2e-1d9a-49cd-a067-152d93730ac8.png" class="photo">
-  <button class="btn" onclick="nextScene()">Another surprise 🎀</button>
+  <button class="btn" onclick="nextScene()">More love 💞</button>
 </div>
 
 <div class="scene" id="s4">
-  <h2 class="glow">You are my comfort 🌙</h2>
-  <p>my calm, my chaos, my smile</p>
-  <div class="envelope" onclick="nextScene()"></div>
+  <h2 class="glow">My arms are your home 🏠</h2>
+  <div class="hug">🫂</div>
+  <button class="btn" onclick="nextScene()">Envelope 💌</button>
 </div>
 
 <div class="scene" id="s5">
-  <h2 class="glow">Even doodles draw us together ✏️</h2>
-  <p>Holding hands in every universe</p>
-  <button class="btn" onclick="nextScene()">One more click 💕</button>
+  <h2 class="glow">A soft kiss before sleep 🌙</h2>
+  <div class="kiss">💋</div>
+  <button class="btn" onclick="nextScene()">Next 💕</button>
 </div>
 
 <div class="scene" id="s6">
-  <h2 class="glow">I don’t promise perfection…</h2>
-  <p>But I promise effort, honesty & love 🤍</p>
-  <button class="btn" onclick="nextScene()">Final 💖</button>
+  <h2 class="glow">I choose you…</h2>
+  <p>Again & again ♾️</p>
+  <button class="btn" onclick="nextScene()">Final ❤️</button>
 </div>
 
 <div class="scene" id="s7">
   <h1 class="final">Ishaaaaaaaaaaaa 🌹</h1>
-  <p>You are my favourite feeling forever ♾️</p>
+  <p>You are my favourite forever 💖</p>
 </div>
 
 <script>
-let current = 1;
+let current=1;
 
 function nextScene(){
   document.getElementById("s"+current).classList.remove("active");
@@ -187,13 +224,22 @@ function nextScene(){
   document.getElementById("s"+current).classList.add("active");
 }
 
+function unlock(){
+  let p=document.getElementById("pass").value;
+  if(p==="22november"){
+    document.getElementById("lock").style.display="none";
+  }else{
+    alert("Wrong password 💔");
+  }
+}
+
 /* Floating hearts */
 setInterval(()=>{
-  let h = document.createElement("div");
-  h.className = "heart";
-  h.innerHTML = "💖";
-  h.style.left = Math.random()*100+"vw";
-  h.style.animationDuration = (6+Math.random()*4)+"s";
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="💖";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=(6+Math.random()*4)+"s";
   document.body.appendChild(h);
   setTimeout(()=>h.remove(),9000);
 },400);
@@ -201,4 +247,3 @@ setInterval(()=>{
 
 </body>
 </html>
-
